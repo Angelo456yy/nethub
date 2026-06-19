@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Escolar de Notas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero" aria-labelledby="pageTitle">
+      <div>
+        <span class="hero__eyebrow">Control académico</span>
+        <h1 id="pageTitle">Panel escolar de notas</h1>
+        <p>Consulta calificaciones, actividades y entregas desde una fuente publicada de Google Sheets en formato JSON.</p>
+      </div>
+      <aside class="hero__badge" aria-label="Información de conexión">
+        <strong>Fuente conectable</strong>
+        <p>Actualiza la variable <code>SHEETS_JSON_URL</code> con tu enlace público para cargar datos reales.</p>
+      </aside>
+    </section>
+
+    <section class="toolbar" aria-label="Herramientas de búsqueda">
+      <label class="search-box" for="searchInput">
+        <span aria-hidden="true">🔎</span>
+        <input id="searchInput" type="search" placeholder="Buscar por alumno o carnet..." autocomplete="off" />
+      </label>
+      <div class="status-pill" id="statusText">Cargando datos...</div>
+    </section>
+
+    <section class="cards" aria-label="Resumen de notas">
+      <article class="card">
+        <div class="card__label">Total de Alumnos</div>
+        <div class="card__value" id="totalStudents">0</div>
+      </article>
+      <article class="card">
+        <div class="card__label">Promedio General</div>
+        <div class="card__value" id="generalAverage">0.00</div>
+      </article>
+      <article class="card">
+        <div class="card__label">Tareas Entregadas</div>
+        <div class="card__value" id="submittedTasks">0</div>
+      </article>
+    </section>
+
+    <section class="table-panel" aria-labelledby="tableTitle">
+      <div class="table-header">
+        <div>
+          <h2 id="tableTitle">Listado de notas</h2>
+          <p>Datos esperados: Carnet, Alumno, Grado, Actividad, Tipo y Nota.</p>
+        </div>
+        <strong id="recordCount">0 registros</strong>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Carnet</th>
+              <th>Alumno</th>
+              <th>Grado</th>
+              <th>Actividad</th>
+              <th>Tipo</th>
+              <th>Nota</th>
+            </tr>
+          </thead>
+          <tbody id="gradesTableBody"></tbody>
+        </table>
+      </div>
+      <div class="empty-state" id="emptyState" hidden>No hay registros para mostrar.</div>
+      <div class="error-state" id="errorState" hidden>No se pudieron cargar los datos. Revisa la URL publicada de Google Sheets.</div>
+    </section>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
